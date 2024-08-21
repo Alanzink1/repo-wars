@@ -15,11 +15,17 @@ const fetchRepos = async (amount:number, setters: Dispatch<SetStateAction<any[]>
     setters.forEach((setter )=> setter(res.data.items))
 }
 
-const useRepos = (amount: number) => {
+type UseReposReturnType = [
+    repositories: Repo[],
+    setRepositories: Dispatch<SetStateAction<Repo[]>>,
+    allRepos: Repo[],
+]
+
+const useRepos = (amount: number):UseReposReturnType => {
     // cria um estado para todos os repositorios
-    const [allRepos, setAllRepos] = useState<any>([])
+    const [allRepos, setAllRepos] = useState<Repo[]>([])
     //cria um estado para os repositorios
-    const [repositories, setRepositories] = useState<any>([])
+    const [repositories, setRepositories] = useState<Repo[]>([])
     // um useEffect para recuperar os repositorios do GitHub
     useEffect(()=>{
         // executa função assíncrona
