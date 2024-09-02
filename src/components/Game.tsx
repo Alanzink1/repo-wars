@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { FaExchangeAlt, FaCheckCircle, FaTimesCircle } from 'react-icons/fa'
 import './game.css'
-import RepoCard from './RepoCard'
+import RepoCard from './repoCard'
 
 interface GameProps {
     repoState: [Repo[], React.Dispatch<React.SetStateAction<Repo[]>>]
@@ -72,7 +72,22 @@ const Game: React.FC<GameProps> = ({
     }
 
     return <div className='game'>
-        {over ? <div className='score'></div> : repo1 && repo2 &&
+        {over ? (
+            <div className='score'>
+                <h1 className="title">Congratulations, you did it!</h1>
+                <div className="container">
+                    <p className="text">Final Score:</p>
+                    <div className="result correct">
+                    <p>{correct}</p>
+                    <FaCheckCircle />
+                    </div>
+                    <div className="result wrong">
+                        <p>{wrong}</p>
+                        <FaTimesCircle />
+                    </div>
+                </div>
+            </div>
+        ) : repo1 && repo2 &&
             (<div className='repos'>
                 <h1 className='title'>Choose the Repo with Most Stars</h1>
                 <div className='container'>

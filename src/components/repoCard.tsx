@@ -1,6 +1,6 @@
 import React from 'react'
 import { BsBook } from 'react-icons/bs'
-import { FaCodeBranch, FaDownload, FaStar } from "react-icons/fa"
+import { FaCodeBranch, FaDownload } from "react-icons/fa"
 import { TbPageBreak } from "react-icons/tb"
 import { VscCommentDiscussion, VscIssues, VscProject } from 'react-icons/vsc'
 import { truncate } from '../utils'
@@ -23,8 +23,10 @@ const RepoCard: React.FC<RepoCardProps> = ({ content, handler }) => {
                 <img src={content.owner.avatar_url} alt={`avatar for ${content.full_name}`} className="avatar" />
                 <ul className="stats">
                     <li className="item">
-                        <p>{content.stargazers_count}</p>
-                        {/* <p>???? ...</p> */}
+                        <p>{
+                        import.meta.env.VITE_GOD_MODE == "true"
+                        ? content.stargazers_count
+                        : "???? ..."}</p>
                     </li>
                     <li className="item">
                         <p>{content.forks_count}</p>
